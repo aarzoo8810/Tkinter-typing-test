@@ -36,7 +36,7 @@ class Ui():
     def home(self):
         """It is start window"""
         self.start_window = Tk()
-        self.start_window.title = self.window_name
+        self.start_window.title(self.window_name)
         self.start_window.geometry("500x400")
         self.start_window.config(bg=self.background_color)
 
@@ -56,7 +56,7 @@ class Ui():
 
 
         self.window = Tk()
-        self.window.title = self.window_name
+        self.window.title(self.window_name)
         self.window.geometry("850x600")
         self.window.config(bg=self.background_color)
 
