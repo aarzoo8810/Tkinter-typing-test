@@ -3,6 +3,6 @@ from ui import Ui
 from text import texts
 import random
 
-text = random.choice(texts).replace("\n", "").strip()
+text = texts
 
 ui = Ui(text=text)

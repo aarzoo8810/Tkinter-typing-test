@@ -1,5 +1,6 @@
 """python modules for user interface"""
 from tkinter import Tk, Label, Entry, INSERT, Text, Button
+import random
 
 seconds = 60
 time_limit = 0
@@ -13,8 +14,10 @@ class Ui():
         self.background_color = "#252526"
         self.text_color = "white"
         self.char_limit = 81
-        self.text = text
-        self.text1 = text # this variable doesn't get modified so we can store it in self.text after users restarts it
+        self.text_list = text
+        self.random_paragraph = random.choice(self.text_list).replace("\n", "").strip()
+        self.text = self.random_paragraph
+        # self.text1 = text # this variable doesn't get modified so we can store it in self.text after users restarts it
         self.wrong_char_list = []
         self.last_word_index = 0
         self.check_input_after_func = None
@@ -79,7 +82,7 @@ class Ui():
             font=('Ariel', 14)
         )
         self.input_label.grid(column=0, row=2, columnspan=2)
-        self.input_label.xview_moveto(-1)
+        self.input_label.xview_moveto(1)
 
         self.input_label.focus()
 
@@ -110,7 +113,7 @@ class Ui():
     def check_input(self):
         """it checks user input against given text and how much error there is"""
         user_input = self.input_label.get().strip().split(" ")
-        given_text = self.text1.split(" ")
+        given_text = self.random_paragraph.split(" ")
 
         last_word_index = self.last_word_index
         if last_word_index > len(user_input) -1:
@@ -188,6 +191,6 @@ class Ui():
         result_label = Label(self.window, text=f"Result: {net_wpm} WPM", font=("Sans", 16))
         result_label.grid(column=0, row=3, columnspan=2, pady=10)
 
-        self.text = self.text1
+        self.text = random.choice(self.text_list).replace("\n", "").strip()
         retry_btn = Button(self.window, text="Restart", command=self.type_window)
         retry_btn.grid(column=1, row=3, columnspan=2)
